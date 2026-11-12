@@ -1,4 +1,4 @@
-# EPCM Games
+# EagleShark Studios LLC (EPCM Games)
 
 The site at https://epcm-games.github.io: a page for The Last Watch and the `app-ads.txt` that verifies its AdMob ads.
 
