@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get The Last Watch</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Hold one stone tower against monsters from every side. Survive to 15:00, then bring down Archie the Destroyer.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://epcm-games.github.io/get/">
+<meta property="og:title" content="Get The Last Watch">
+<meta property="og:description" content="Hold one stone tower against monsters from every side. Survive to 15:00, then bring down Archie the Destroyer.">
+<meta property="og:image" content="https://epcm-games.github.io/icon.png">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="../icon.png">
+<style>
+  :root{--night:#10130f;--panel:#1c211a;--line:#3b4337;--parch:#ede3c7;--muted:#a3a48c;--gold:#e8b54a}
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(ellipse at 50% 0%,#2a2a1a 0%,var(--night) 60%) fixed,var(--night);color:var(--parch);font:16px/1.55 "Segoe UI",system-ui,-apple-system,sans-serif}
+  main{max-width:720px;margin:0 auto;padding:48px 16px 40px;text-align:center}
+  img.icon{width:128px;height:128px;border-radius:28px;box-shadow:0 10px 30px rgba(0,0,0,.6)}
+  h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:clamp(34px,7vw,52px);margin:18px 0 4px;letter-spacing:.02em}
+  .tag{color:var(--muted);margin:0 0 28px}
+  a{color:var(--gold)}
+  .btn{display:inline-block;margin:6px 4px;padding:11px 18px;border-radius:6px;background:linear-gradient(#e8b54a,#b98a2c);color:#20170a;font-weight:800;text-decoration:none}
+  .btn[hidden]{display:none}
+  footer{color:var(--muted);font-size:14px;margin-top:28px}
+</style>
+</head>
+<body>
+<main>
+  <img class="icon" src="../icon.png" alt="The Last Watch app icon: Archie looming over the Watch at dusk">
+  <h1>The Last Watch</h1>
+  <p class="tag">Hold one stone tower against monsters from every side. Survive to 15:00, then bring down Archie the Destroyer.</p>
+
+  <a class="btn" id="play" href="https://play.google.com/store/apps/details?id=com.epcmgames.thelastwatch">Get it on Google Play</a>
+  <a class="btn" id="appstore" href="https://apps.apple.com/app/id6824555358">Download on the App Store</a>
+
+  <footer><a href="../">More about The Last Watch</a></footer>
+</main>
+<script>
+(function(){
+  var SB_URL='https://awsylfqhjwbovrooasrj.supabase.co';
+  var SB_KEY='sb_publishable_vy_1_CeiRe7h0ZqBw7pw6Q_cRtlGIP-';
+  var STORE={
+    android:'https://play.google.com/store/apps/details?id=com.epcmgames.thelastwatch',
+    ios:'https://apps.apple.com/app/id6824555358'
+  };
+  var ua=navigator.userAgent||'';
+  var platform=/android/i.test(ua)?'android'
+    :(/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1))?'ios'
+    :'other';
+  var src='';
+  try{src=new URLSearchParams(location.search).get('src')||'';}catch(e){}
+
+  var send;
+  try{
+    send=fetch(SB_URL+'/rest/v1/rpc/lw_link_tap',{
+      method:'POST',
+      keepalive:true,
+      headers:{apikey:SB_KEY,'Content-Type':'application/json'},
+      body:JSON.stringify({p_platform:platform,p_src:src})
+    }).catch(function(){});
+  }catch(e){send=Promise.resolve();}
+
+  if(platform==='other')return;
+
+  // On a phone show only the matching store, so a blocked redirect isn't confusing.
+  document.getElementById(platform==='ios'?'play':'appstore').hidden=true;
+
+  var gone=false;
+  function go(){if(gone)return;gone=true;location.replace(STORE[platform]);}
+  Promise.race([send,new Promise(function(r){setTimeout(r,300);})]).then(go,go);
+})();
+</script>
+</body>
+</html>
