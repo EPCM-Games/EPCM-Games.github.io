@@ -10,9 +10,9 @@
 <meta property="og:url" content="https://epcm-games.github.io/get/">
 <meta property="og:title" content="Get The Last Watch">
 <meta property="og:description" content="Hold one stone tower against monsters from every side. Survive to 15:00, then bring down Archie the Destroyer.">
-<meta property="og:image" content="https://epcm-games.github.io/icon.png">
+<meta property="og:image" content="https://epcm-games.github.io/get/app-icon.png">
 <meta name="twitter:card" content="summary">
-<link rel="icon" href="../icon.png">
+<link rel="icon" href="app-icon.png">
 <style>
   :root{--night:#10130f;--panel:#1c211a;--line:#3b4337;--parch:#ede3c7;--muted:#a3a48c;--gold:#e8b54a}
   *{box-sizing:border-box}
@@ -22,21 +22,31 @@
   h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:clamp(34px,7vw,52px);margin:18px 0 4px;letter-spacing:.02em}
   .tag{color:var(--muted);margin:0 0 28px}
   a{color:var(--gold)}
-  .btn{display:inline-block;margin:6px 4px;padding:11px 18px;border-radius:6px;background:linear-gradient(#e8b54a,#b98a2c);color:#20170a;font-weight:800;text-decoration:none}
-  .btn[hidden]{display:none}
+  .badges{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:16px 20px}
+  .badge{display:block;line-height:0}
+  .badge[hidden]{display:none}
+  .badge img{display:block}
+  /* Google's PNG has transparent padding (41/250 of its height on each side);
+     the negative margin trims that space so both badges show 48px tall. */
+  #play img{height:72px;width:auto;margin:-12px}
+  #appstore img{height:48px;width:auto}
   footer{color:var(--muted);font-size:14px;margin-top:28px}
+  .legal{color:var(--muted);font-size:12px;opacity:.75;margin:14px auto 0;max-width:520px}
 </style>
 </head>
 <body>
 <main>
-  <img class="icon" src="../icon.png" alt="The Last Watch app icon: Archie looming over the Watch at dusk">
+  <img class="icon" src="app-icon.png" alt="The Last Watch app icon: a stone tower crowned with fire">
   <h1>The Last Watch</h1>
   <p class="tag">Hold one stone tower against monsters from every side. Survive to 15:00, then bring down Archie the Destroyer.</p>
 
-  <a class="btn" id="play" href="https://play.google.com/store/apps/details?id=com.epcmgames.thelastwatch">Get it on Google Play</a>
-  <a class="btn" id="appstore" href="https://apps.apple.com/app/id6824555358">Download on the App Store</a>
+  <div class="badges">
+    <a class="badge" id="play" href="https://play.google.com/store/apps/details?id=com.epcmgames.thelastwatch"><img src="google-play-badge.png" width="185" height="72" alt="Get it on Google Play"></a>
+    <a class="badge" id="appstore" href="https://apps.apple.com/app/id6824555358"><img src="app-store-badge.svg" width="144" height="48" alt="Download on the App Store"></a>
+  </div>
 
   <footer><a href="../">More about The Last Watch</a></footer>
+  <p class="legal">Google Play and the Google Play logo are trademarks of Google LLC. App Store is a service mark of Apple Inc., registered in the U.S. and other countries.</p>
 </main>
 <script>
 (function(){
